@@ -22,12 +22,12 @@ class CheckRepository
         return $modelClass::enabled();
     }
 
-    protected static function determineCheckModel(): string
+    public static function determineCheckModel(): string
     {
         $monitorModel = config('server-monitor.check_model') ?? Check::class;
 
         if (! is_a($monitorModel, Check::class, true)) {
-            throw InvalidConfiguration::modelIsNotValid($monitorModel);
+            throw InvalidConfiguration::checkModelIsNotValid($monitorModel);
         }
 
         return $monitorModel;
